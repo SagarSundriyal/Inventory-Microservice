@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20260223-1
+      author: sagar
+      changes:
+        - createTable:
+            tableName: inventory_batch
+            columns:
+              - column:
+                  name: batch_id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: BIGINT
+              - column:
+                  name: product_name
+                  type: VARCHAR(255)
+              - column:
+                  name: quantity
+                  type: INT
+              - column:
+                  name: expiry_date
+                  type: DATE
+
+  - changeSet:
+      id: 20260223-2
+      author: sagar
+      changes:
+        - loadData:
+            tableName: inventory_batch
+            file: db/data/inventory.csv
+            separator: ","
+            columns:
+              - column:
+                  name: batch_id
+                  type: NUMERIC
+              - column:
+                  name: product_id
+                  type: NUMERIC
+              - column:
+                  name: product_name
+                  type: STRING
+              - column:
+                  name: quantity
+                  type: NUMERIC
+              - column:
+                  name: expiry_date
+                  type: DATE
